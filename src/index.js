@@ -16,7 +16,7 @@ async function getUserData(id) {
       throw new Error("Invalid Input -- Out of Range or Not a Number");
     }
     
-    // Determine which database to use
+  
     const dbName = await central(id);
     const dbs = { db1, db2, db3 };
     const selectedDb = dbs[dbName];
@@ -25,7 +25,7 @@ async function getUserData(id) {
       throw new Error(`Database ${dbName} not found`);
     }
     
-    // Fetch data concurrently
+
     const [userBasic, userPersonal] = await Promise.all([
       selectedDb(id),
       vault(id)
